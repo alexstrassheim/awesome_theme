@@ -428,8 +428,7 @@ root.buttons(awful.util.table.join(
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
     -- Take a screenshot
-    -- https://github.com/copycat-killer/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "p", function() os.execute("screenshot") end),
+    awful.key({ altkey }, "p", function() os.execute("scrot 'Screenshot_%Y-%m-%d_%H%M%S.png' -e 'mv $f ~/screenshot/'") end),
 
     -- Brightness control
     awful.key({ }, "XF86MonBrightnessDown", function ()
