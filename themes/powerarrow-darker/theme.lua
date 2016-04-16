@@ -12,7 +12,7 @@ themes_dir                          = os.getenv("HOME") .. "/.config/awesome/the
 -- theme.wallpaper                     = themes_dir .. "/wall.png"
 theme.wallpaper                     = "/home/alex/Pictures/bridge.jpg"
 
-theme.font                          = "Monospace 12"
+theme.font                          = "Monospace 11"
 
 theme.fg_normal                     = "#DDDDFF"
 theme.fg_focus                      = "#F0DFAF"
