@@ -1,2 +1,2 @@
 # awesome_v2
-![alt tag](https://github.com/a0lex/awesome_v2/blob/master/screenshot.png)
+![alt tag](https://raw.githubusercontent.com/alexstrassheim/awesome_v2/master/screenshot.png)
