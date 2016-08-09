@@ -10,7 +10,7 @@ theme                               = {}
 
 themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker"
 -- theme.wallpaper                     = themes_dir .. "/wall.png"
-theme.wallpaper                     = "/home/alex/Pictures/bridge.jpg"
+theme.wallpaper                     = "~/Pictures/code.png"
 
 theme.font                          = "Monospace 11"
 
