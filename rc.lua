@@ -437,7 +437,8 @@ globalkeys = awful.util.table.join(
         awful.util.spawn("xbacklight -inc 10") end),
 
     -- Lockscreen
-    awful.key({ altkey }, "s", function() os.execute("i3lock -c000000") end),
+    -- awful.key({ altkey }, "s", function() os.execute("i3lock -c000000") end),
+    awful.key({ altkey }, "s", function() os.execute("i3lock-fancy") end),
 
     -- Tag browsing
     awful.key({ modkey }, "Left",   awful.tag.viewprev       ),
@@ -445,8 +446,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "Escape", awful.tag.history.restore),
 
     -- Non-empty tag browsing
-    awful.key({ altkey }, "1", function () lain.util.tag_view_nonempty(-1) end),
-    awful.key({ altkey }, "2", function () lain.util.tag_view_nonempty(1) end),
+    awful.key({ altkey }, "2", function () lain.util.tag_view_nonempty(-1) end),
+    awful.key({ altkey }, "3", function () lain.util.tag_view_nonempty(1) end),
 
     -- Default client focus
     awful.key({ altkey }, "k",
@@ -527,7 +528,7 @@ globalkeys = awful.util.table.join(
 
     -- Widgets popups
     awful.key({ altkey,           }, "c",      function () lain.widgets.calendar:show(7) end),
-    awful.key({ altkey,           }, "h",      function () fswidget.show(12) end),
+    awful.key({ altkey,           }, "h",      function () fswidget.show(1,2) end),
 
     -- ALSA volume control
     awful.key({ altkey }, "Up",
@@ -691,7 +692,7 @@ awful.rules.rules = {
           properties = { tag = tags[1][2] } },
 
     { rule = { class = "burp-StartBurp" },
-          properties = { tag = tags[1][4] } },
+          properties = { tag = tags[1][2] } },
 
     { rule = { class = "Spotify" },
           properties = { tag = tags[1][3] } },
