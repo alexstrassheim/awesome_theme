@@ -107,10 +107,10 @@ if screen.count() < 2 then
 else
     tags = {
         settings = {
-            { names = { "[1:TERM]", "[2:FILE]", "[3:OFFICE]"},
+            { names = { "[1:TERM]", "[2:BURP]", "[3:OFFICE]"},
               layout = { layouts[4], layouts[3], layouts[2]}
             },
-            { names = { "[1:WEB]", "[2:BURP]", "[3:WIN]", "[4:VM]" },
+            { names = { "[1:WEB]", "[2:PENTEST]", "[3:VM]", "[4:WIN]" },
               layout = {layouts[3], layouts[2], layouts[4], layouts[4]}
             }
         }
@@ -438,7 +438,8 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86MonBrightnessUp", function ()
         awful.util.spawn("xbacklight -inc 10") end),
 
-    awful.key({ altkey }, "s", function() os.execute("i3lock -c000000") end),
+    -- awful.key({ altkey }, "s", function() os.execute("i3lock -c000000") end),
+    awful.key({ altkey }, "s", function() os.execute("i3lock-fancy") end),
 
     -- Tag browsing
     awful.key({ modkey }, "Left",   awful.tag.viewprev       ),
@@ -450,12 +451,12 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end),
 
     -- Default client focus
-    awful.key({ altkey }, "k",
+    awful.key({ altkey }, "j",
         function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ altkey }, "j",
+    awful.key({ altkey }, "k",
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
@@ -687,41 +688,26 @@ awful.rules.rules = {
     { rule = { class = "Termite" },
           properties = { tag = tags[1][1] } },
 
-    { rule = { class = "Firefox" },
-          properties = { tag = tags[screen.count()][1] } },
-
-    { rule = { instance = "Msgcompose"},
-          properties = { tag = tags[screen.count()][1], floating = true} },
-
     { rule = { class = "VirtualBox" },
-          properties = { floating = true, tag = tags[screen.count()][4] } },
+          properties = { floating = true, tag = tags[screen.count()][3] } },
 
     { rule = { class = "Recoll" },
           properties = { tag = tags[1][3] } },
 
     { rule = { class = "rdesktop" },
-      properties = { tag = tags[screen.count()][3],
+      properties = { tag = tags[screen.count()][4],
                            maximized_horizontal = true,
                            maximized_vertical = true } },
 
-    { rule = { instance = "sun-awt-X11-XFramePeer" },
+    { rule = { class = "burp-StartBurp" },
+      properties = { tag = tags[1][2] } },
+
+      { rule = { name = "Pentest*" },
       properties = { tag = tags[screen.count()][2] } },
 
-    { rule = { class = "Spotify" },
-             { instance = {"spotify", "Spotify" } },
-          properties = { tag = tags[1][3] } },
+    { rule = { instance = "Msgcompose"},
+          properties = { tag = tags[screen.count()][1], floating = true} },
 
-    -- { rule = { class = "Gajim" },
-    --       properties = { tag = tags[1][4] } },
-
-    -- { rule = { class = "psi" },
-    --       properties = { tag = tags[1][4] } },
-    -- { rule = { class = "chat", "psi" },
-    --       properties = { tag = tags[1][4] } },
-
-    -- { rule = { class = "Thunderbird" },
-    --       properties = { tag = tags[screen.count()][1] } },
-    --
 
 }
 -- }}}
