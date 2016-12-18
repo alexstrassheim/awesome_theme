@@ -107,11 +107,11 @@ if screen.count() < 2 then
 else
     tags = {
         settings = {
-            { names = { "[1:TERM]", "[2:BURP]", "[3:OFFICE]"},
-              layout = { layouts[4], layouts[3], layouts[2]}
+            { names = { "[1:TERM]", "[2:BURP]"},
+              layout = { layouts[4], layouts[3]}
             },
-            { names = { "[1:WEB]", "[2:PENTEST]", "[3:VM]", "[4:WIN]" },
-              layout = {layouts[3], layouts[2], layouts[4], layouts[4]}
+            { names = { "[1:WEB]", "[2:PENTEST]", "[3:OFFICE]", "[3:VM]", "[4:WIN]" },
+              layout = {layouts[3], layouts[2],  layouts[2], layouts[4], layouts[4]}
             }
         }
     }
@@ -152,7 +152,7 @@ mytextclock = lain.widgets.abase({
 })
 
 -- calendar
-lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
+-- lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
 
 -- Uptime
 uptimewidget = wibox.widget.textbox()
@@ -434,9 +434,9 @@ globalkeys = awful.util.table.join(
 
     -- Brightness control
     awful.key({ }, "XF86MonBrightnessDown", function ()
-        awful.util.spawn("xbacklight -dec 10") end),
+        awful.util.spawn("light -U 10") end),
     awful.key({ }, "XF86MonBrightnessUp", function ()
-        awful.util.spawn("xbacklight -inc 10") end),
+        awful.util.spawn("light -A 10") end),
 
     -- awful.key({ altkey }, "s", function() os.execute("i3lock -c000000") end),
     awful.key({ altkey }, "s", function() os.execute("i3lock-fancy") end),
@@ -689,24 +689,32 @@ awful.rules.rules = {
           properties = { tag = tags[1][1] } },
 
     { rule = { class = "VirtualBox" },
-          properties = { floating = true, tag = tags[screen.count()][3] } },
+          properties = { floating = true, tag = tags[screen.count()][4] } },
+    { rule = { instance = "zathura" },
+          properties = { tag = tags[screen.count()][3] } },
 
-    { rule = { class = "Recoll" },
-          properties = { tag = tags[1][3] } },
+    { rule = { name = "Recoll" },
+          properties = { tag = tags[screen.count()][3] } },
 
     { rule = { class = "rdesktop" },
-      properties = { tag = tags[screen.count()][4],
-                           maximized_horizontal = true,
-                           maximized_vertical = true } },
+    properties = { tag = tags[screen.count()][5],
+    maximized_horizontal = true,
+    maximized_vertical = true } },
 
     { rule = { class = "burp-StartBurp" },
-      properties = { tag = tags[1][2] } },
+    properties = { tag = tags[1][2] } },
 
-      { rule = { name = "Pentest*" },
-      properties = { tag = tags[screen.count()][2] } },
+    { rule = { class = "libreoffice" },
+    properties = { tag = tags[1][3] } },
+
+    { rule = { class = "Firefox" },
+    properties = { tag = tags[screen.count()][1] } },
+
+    { rule = { name = "Pentest*" },
+    properties = { tag = tags[screen.count()][2] } },
 
     { rule = { instance = "Msgcompose"},
-          properties = { tag = tags[screen.count()][1], floating = true} },
+    properties = { tag = tags[screen.count()][1], floating = true} },
 
 
 }
